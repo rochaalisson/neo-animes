@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import AnimeCard from '../AnimeCard'
 import Spinner from '../Spinner'
 import { useHomeFetch } from '../../hooks/useAnimesFetch'
@@ -32,21 +32,6 @@ export default function AnimeScroller({ sortBy }) {
    const { animes, loading } = useHomeFetch(sortQuery)
    const [offset, setOffset] = useState(0)
 
-   useEffect(() => {
-      getStyle(document.querySelector(`.${sortBy}`))
-   }, [offset])
-   const getStyle = (element) => {
-      try {
-         const containerTransform = window
-            .getComputedStyle(element)
-            .getPropertyValue('transform')
-         const cardWidth = window
-            .getComputedStyle(element.firstChild)
-            .getPropertyValue('width')
-      } catch (err) {
-         console.log(err)
-      }
-   }
    return (
       <>
          {!loading ? (
