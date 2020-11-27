@@ -57,19 +57,6 @@ export default function AnimeSlider() {
                                     <h4>Rating:</h4>
                                     <p>{attributes?.averageRating}%</p>
                                  </Info>
-                                 {/* <Categories>
-                                    {attributes.categories[0]
-                                       ? attributes.categories.map(
-                                            (category, idx) => (
-                                               <CategoryItem
-                                                  key={`category${idx}`}
-                                               >
-                                                  {category}
-                                               </CategoryItem>
-                                            )
-                                         )
-                                       : null}
-                                 </Categories> */}
                               </Container>
                            </Slide>
                         </Link>

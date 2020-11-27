@@ -14,13 +14,6 @@ export const useTrendingFetch = () => {
          setLoading(true)
 
          const animesAPI = await API.fetchTrending()
-         // const getCategories = async (animeId) => {
-         //    setLoading(true)
-         //    const categories = (await API.fetchCategories(animeId)).data?.map(
-         //       (category) => category.attributes.title
-         //    )
-         //    return await categories
-         // }
 
          setAnimes(() => ({
             ...animesAPI,
@@ -29,7 +22,6 @@ export const useTrendingFetch = () => {
                   ...anime,
                   attributes: {
                      ...anime.attributes,
-                     // categories: getCategories(anime.id),
                   },
                }
             }),
