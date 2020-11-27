@@ -16,9 +16,14 @@ const AnimeHeader = styled.div`
 function AnimeDetails({ getAnimeStatus, toggle }) {
    const { id } = useParams()
    const { anime, loading } = useSingleFetch(id)
-   const rating = anime.attributes.averageRating || 0
-   const posterImage = anime.attributes.posterImage.small || noImage
-   const coverImage = anime.attributes.coverImage.large || noImage
+   const attributes = anime.attributes
+   const rating = attributes.averageRating || '0'
+   const posterImage = attributes.posterImage?.small || noImage
+   const coverImage = attributes.coverImage?.large || noImage
+   const title = attributes.canonicalTitle || ''
+   const episodeCount = attributes.episodeCount || 0
+   const synopsis = attributes.synopsis || ''
+   const categories = attributes.categories || []
    const ratingCount = (() => {
       let sum = 0
       const ratingFrequencies = anime.attributes.ratingFrequencies
@@ -77,7 +82,7 @@ function AnimeDetails({ getAnimeStatus, toggle }) {
                   <div style={{ margin: '0 10px' }}>
                      <div style={{ display: 'flex', alignItems: 'center' }}>
                         <h2 style={{ margin: '0', fontSize: '2rem' }}>
-                           {anime.attributes.canonicalTitle}
+                           {title}
                         </h2>
                         <IconButtons className="icon-buttons">
                            <Icon listType="favorite" />
@@ -95,7 +100,7 @@ function AnimeDetails({ getAnimeStatus, toggle }) {
                      </Attribute>
                      <AttributeTitle>Categories: </AttributeTitle>
                      <Categories>
-                        {anime.attributes.categories?.map((category, idx) => (
+                        {categories.map((category, idx) => (
                            <CategoryItem key={`category${idx}`}>
                               {category}
                            </CategoryItem>
@@ -103,7 +108,7 @@ function AnimeDetails({ getAnimeStatus, toggle }) {
                      </Categories>
                      <Attribute>
                         <AttributeTitle>Episodes: </AttributeTitle>
-                        <p>{anime.attributes.episodeCount}</p>
+                        <p>{episodeCount}</p>
                      </Attribute>
                      <AttributeTitle>Description:</AttributeTitle>
                      <div
@@ -112,7 +117,7 @@ function AnimeDetails({ getAnimeStatus, toggle }) {
                            textAlign: 'justify',
                         }}
                      >
-                        {anime.attributes.synopsis}
+                        {synopsis}
                      </div>
                   </div>
                </Wrapper>

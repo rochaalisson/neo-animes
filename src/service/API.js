@@ -27,8 +27,9 @@ const apiSettings = {
       const endpoint = `${API_URL}anime/${animeId}`
       return await (await fetch(endpoint, config)).json()
    },
-   fetchList: async (animeIds) => {
-      const endpoint = `${API_URL}anime?filter[id]=${animeIds}&${PAGING}`
+   fetchList: async (animeIds, page) => {
+      const pageOffset = page * 20
+      const endpoint = `${API_URL}anime?filter[id]=${animeIds}&${PAGING}${pageOffset}`
       return await (await fetch(endpoint, config)).json()
    },
    fetchCategories: async (animeId) => {

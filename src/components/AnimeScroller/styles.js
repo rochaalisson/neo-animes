@@ -7,10 +7,6 @@ export const Title = styled.div`
    align-items: flex-end;
    justify-content: space-between;
    padding: 0 10px;
-   a {
-      text-decoration: none;
-      color: var(--primaryColor);
-   }
    h2 {
       margin: 0;
    }

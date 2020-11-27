@@ -14,7 +14,7 @@ export const useListFetch = (listType, ids = '', currentPage = 0) => {
          setError(false)
          setLoading(true)
 
-         const animesAPI = await API.fetchList(ids)
+         const animesAPI = await API.fetchList(ids, page)
          setAnimes(() => ({
             ...animesAPI,
          }))

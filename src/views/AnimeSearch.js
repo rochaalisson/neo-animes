@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import AnimeCard from '../components/AnimeCard'
 import Spinner from '../components/Spinner'
 import { useHomeFetch } from '../hooks/useAnimesFetch'
-import { Content } from '../styles'
+import styled from 'styled-components'
 
 export default function AnimeSearch() {
    const query = new URLSearchParams(useLocation().search)
@@ -29,16 +29,6 @@ export default function AnimeSearch() {
          {!loading ? (
             animes.data[0] ? (
                <>
-                  {page != 0 ? (
-                     <Link to={`/search?q=${searchTerm}&p=${changePage(-1)}`}>
-                        <button>anterior</button>
-                     </Link>
-                  ) : null}
-                  {page < animes.meta?.count / 20 - 1 ? (
-                     <Link to={`/search?q=${searchTerm}&p=${changePage(1)}`}>
-                        <button>proxima</button>
-                     </Link>
-                  ) : null}
                   <div style={{ width: '100%' }}>
                      <Content>
                         {animes.data.map((anime, idx) => {
@@ -46,6 +36,25 @@ export default function AnimeSearch() {
                         })}
                      </Content>
                   </div>
+                  <PagingButtons>
+                     {page != 0 ? (
+                        <Link
+                           to={`/search?q=${searchTerm}&p=${changePage(-1)}`}
+                        >
+                           <button>PREVIOUS</button>
+                        </Link>
+                     ) : (
+                        <div></div>
+                     )}
+                     <p>Page {page}</p>
+                     {page < animes.meta?.count / 20 - 1 ? (
+                        <Link to={`/search?q=${searchTerm}&p=${changePage(1)}`}>
+                           <button>NEXT</button>
+                        </Link>
+                     ) : (
+                        <div></div>
+                     )}
+                  </PagingButtons>
                </>
             ) : (
                <h2>Not found</h2>
@@ -56,3 +65,39 @@ export default function AnimeSearch() {
       </>
    )
 }
+
+const PagingButtons = styled.div`
+   width: 50%;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   button {
+      cursor: pointer;
+      border: none;
+      color: var(--lightGrey);
+      font-size: 1rem;
+      background: var(--medGrey);
+      padding: 5px;
+      border-radius: 5px;
+   }
+   p {
+      font-size: 1.2rem;
+      margin: 0;
+   }
+`
+
+const Content = styled.div`
+   --itemWidth: 180px;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(var(--itemWidth), 1fr));
+   grid-gap: 5px;
+   max-width: var(--maxWidth);
+   margin: 0 auto;
+   @media (max-width: 370px) {
+      --itemWidth: 130px;
+   }
+   @media (min-width: 1920px) {
+      --itemWidth: 250px;
+   }
+`

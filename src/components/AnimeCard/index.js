@@ -11,7 +11,7 @@ function AnimeCard({ anime, animeStatus, toggle }) {
       canonicalTitle: '',
       posterImage: { small: '' },
    }
-   const title = attributes.canonicalTitle || 'Anime'
+   const title = attributes.canonicalTitle || ''
    const image = attributes.posterImage?.small || noImage
 
    const [isCollapsed, setIsCollapsed] = useState(false)
@@ -71,12 +71,9 @@ function AnimeCard({ anime, animeStatus, toggle }) {
                   <Image>
                      <img src={image} alt={title} width="100%" />
                   </Image>
-                  <AnimeTitle test-dataid="testCardTitle">{title}</AnimeTitle>
+                  <AnimeTitle>{title}</AnimeTitle>
                </Link>
-               <Options
-                  onClick={handleOptionsClick}
-                  test-dataid="testCardOptionsButton"
-               >
+               <Options onClick={handleOptionsClick}>
                   <img src={optionsButton} alt="options" width="100%" />
                </Options>
                <Collapsible style={{ display: isCollapsed ? 'block' : 'none' }}>

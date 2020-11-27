@@ -9,11 +9,6 @@ export const GlobalStyle = createGlobalStyle`
         --darkGrey: #1c1c1c;
         --primaryColor: #8257e6;
     }
-    #root{
-        min-height: 100vh;
-        position: relative;
-        padding-bottom: 90px;
-    }
 
     * {
         box-sizing: border-box;
@@ -38,10 +33,13 @@ export const GlobalStyle = createGlobalStyle`
             font-size: 1.1rem;
             font-weight: 500;
         }
-
         p {
             color: var(--white);
             font-size: 1rem;
+        }
+        a{
+            text-decoration: none;
+            color: var(--primaryColor);
         }
     }
 `

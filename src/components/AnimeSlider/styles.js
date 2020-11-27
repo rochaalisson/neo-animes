@@ -38,7 +38,8 @@ export const Container = styled.div`
       div img {
          border-radius: 50px 50px 8px 8px;
       }
-      div h4, div p {
+      div h4,
+      div p {
          display: none;
       }
    }

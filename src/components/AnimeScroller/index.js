@@ -3,12 +3,7 @@ import AnimeCard from '../AnimeCard'
 import Spinner from '../Spinner'
 import { useHomeFetch } from '../../hooks/useAnimesFetch'
 import navigationButton from '../../assets/images/arrow-down.svg'
-import {
-   Title,
-   Container,
-   Wrapper,
-   NavButton,
-} from './styles'
+import { Title, Container, Wrapper, NavButton } from './styles'
 import { Link } from 'react-router-dom'
 
 export default function AnimeScroller({ sortBy }) {

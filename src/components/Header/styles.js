@@ -13,10 +13,6 @@ export const Content = styled.div`
    justify-content: space-between;
    padding: 0;
    margin: 0 auto;
-   a {
-      color: var(--primaryColor);
-      text-decoration: none;
-   }
    span {
       color: var(--white);
    }
